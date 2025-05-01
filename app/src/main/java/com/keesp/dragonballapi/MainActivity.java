@@ -1,6 +1,7 @@
 package com.keesp.dragonballapi;
 
 import android.os.Bundle;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -27,10 +28,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CharacterAdapter adapter;
     private ArrayList<Character> characterList;
-    private String url = "https://dragonball-api.com/api/characters";
-
-    private int currentPage = 1;
-    private boolean isLoading = false;
+    private ArrayList<Character> originalList;
+    private String url = "https://dragonball-api.com/api/characters?limit=58";
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,38 +46,39 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        searchView = findViewById(R.id.search_view);
+
         characterList = new ArrayList<>();
+        originalList = new ArrayList<>();
         adapter = new CharacterAdapter(this, characterList);
         recyclerView.setAdapter(adapter);
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        fetchCharacters();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                GridLayoutManager layoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
-                if (!isLoading && layoutManager != null &&
-                        layoutManager.findLastCompletelyVisibleItemPosition() == characterList.size() - 1) {
-                    currentPage++;
-                    fetchCharacters();
-                }
+            public boolean onQueryTextSubmit(String query) {
+                filterList(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return true;
             }
         });
-
-        fetchCharacters();
     }
 
     private void fetchCharacters() {
-        isLoading = true;
-        String paginatedUrl = url + "?page=" + currentPage;
-
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, paginatedUrl, null,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
                         JSONArray items = response.getJSONArray("items");
                         for (int i = 0; i < items.length(); i++) {
                             JSONObject item = items.getJSONObject(i);
-                            characterList.add(new Character(
+                            Character character = new Character(
                                     item.getString("name"),
                                     item.getString("image"),
                                     item.getString("description"),
@@ -85,21 +86,36 @@ public class MainActivity extends AppCompatActivity {
                                     item.getString("ki"),
                                     item.getString("maxKi"),
                                     item.getString("gender")
-                            ));
+                            );
+                            characterList.add(character);
+                            originalList.add(character);
                         }
                         adapter.notifyDataSetChanged();
-                        isLoading = false;
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        isLoading = false;
                         Toast.makeText(MainActivity.this, "Error al procesar los datos", Toast.LENGTH_SHORT).show();
                     }
                 },
                 error -> {
                     error.printStackTrace();
-                    isLoading = false;
                     Toast.makeText(MainActivity.this, "Error en la conexión", Toast.LENGTH_SHORT).show();
                 });
         queue.add(request);
     }
+
+    private void filterList(String text) {
+        characterList.clear();
+        if (text.isEmpty()) {
+            characterList.addAll(originalList);
+        } else {
+            text = text.toLowerCase();
+            for (Character character : originalList) {
+                if (character.getName().toLowerCase().contains(text)) {
+                    characterList.add(character);
+                }
+            }
+        }
+        adapter.notifyDataSetChanged();
+    }
+
 }
