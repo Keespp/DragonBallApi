@@ -21,7 +21,7 @@ Este proyecto es una aplicación en Java que consume una API de Dragon Ball para
 
 ## 🚀 Instalación y ejecución
 
-1. Clona el repositorio: [🔗 GitHub](https://github.com/chadvidovcich/dragonBall-API?utm_source=chatgpt.com)
+1. Clona el repositorio: [🔗 GitHub](https://github.com/Keespp/DragonBallApi.git)
     
     ```bash
     git clone https://github.com/Keespp/DragonBallApi.git
@@ -34,7 +34,7 @@ Este proyecto es una aplicación en Java que consume una API de Dragon Ball para
     ./gradlew build
     ```
     
-3. Ejecuta la aplicación: [🔗 GitHub](https://github.com/elpatron1133/DragonBallAPI?utm_source=chatgpt.com)
+3. Ejecuta la aplicación: [🔗 GitHub](https://github.com/Keespp/DragonBallApi.git)
     
     ```bash
     ./gradlew run
