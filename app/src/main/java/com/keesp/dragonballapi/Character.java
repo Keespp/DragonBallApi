@@ -1,6 +1,7 @@
 package com.keesp.dragonballapi;
 
 public class Character {
+    private int id;
     private String name;
     private String imageUrl;
     private String description;
@@ -9,7 +10,8 @@ public class Character {
     private String maxKi;
     private String gender;
 
-    public Character(String name, String imageUrl, String description, String race, String ki, String maxKi, String gender) {
+    public Character(int id, String name, String imageUrl, String description, String race, String ki, String maxKi, String gender) {
+        this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
         this.description = description;
@@ -19,6 +21,7 @@ public class Character {
         this.gender = gender;
     }
 
+    public int getId() { return id; }
     public String getName() { return name; }
     public String getImageUrl() { return imageUrl; }
     public String getDescription() { return description; }
@@ -27,4 +30,3 @@ public class Character {
     public String getMaxKi() { return maxKi; }
     public String getGender() { return gender; }
 }
-

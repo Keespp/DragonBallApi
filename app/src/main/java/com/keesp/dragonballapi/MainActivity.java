@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         for (int i = 0; i < items.length(); i++) {
                             JSONObject item = items.getJSONObject(i);
                             Character character = new Character(
+                                    item.getInt("id"),
                                     item.getString("name"),
                                     item.getString("image"),
                                     item.getString("description"),

@@ -1,6 +1,7 @@
 package com.keesp.dragonballapi;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,12 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.View
         Glide.with(context)
                 .load(character.getImageUrl())
                 .into(holder.imageView);
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra("character_id", character.getId());
+            context.startActivity(intent);
+        });
     }
 
 

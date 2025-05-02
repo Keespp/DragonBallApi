@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#272b33">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fondosescenario"
+                android:contentDescription="@null" />
+
+            <ImageView
+                android:id="@+id/character_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/character_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:paddingStart="10dp"
+                android:textStyle="bold"
+                android:textSize="50sp"
+                android:textColor="#fbc02d"
+                android:background="@drawable/gradient" />
+
+        </FrameLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp">
+
+        <TextView android:id="@+id/character_ki" style="@style/TextItemStyle" />
+        <TextView android:id="@+id/character_max_ki" style="@style/TextItemStyle" />
+        <TextView android:id="@+id/character_race" style="@style/TextItemStyle" />
+        <TextView android:id="@+id/character_gender" style="@style/TextItemStyle" />
+        <TextView android:id="@+id/character_affiliation" style="@style/TextItemStyle" />
+
+        <TextView
+            android:id="@+id/character_description"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/character_transformations"
+            android:text="Transformaciones"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#fbc02d"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/transformations_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal" />
+
+        <TextView
+            android:text="Planeta de origen"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#fbc02d"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop">
+
+
+        <ImageView
+            android:id="@+id/planet_image"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="center" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_gravity="top"
+            android:background="@drawable/gradient2   "/>
+
+            <TextView
+                android:id="@+id/planet_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:paddingStart="10dp"
+                android:textStyle="bold"
+                android:textSize="50sp"
+                android:textColor="#fbc02d"
+                android:background="@drawable/gradient" />
+        </FrameLayout>
+
+        <TextView android:id="@+id/planet_status"
+            android:layout_marginStart="10dp"
+            style="@style/TextItemStyle" />
+
+        <TextView android:id="@+id/planet_description"
+            android:textSize="14sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
+</ScrollView>
