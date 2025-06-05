@@ -35,12 +35,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-
-
-        <!-- Nombre del personaje -->
-
-
-        <!-- Información adicional -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/character_info_layout"
             android:layout_width="0dp"

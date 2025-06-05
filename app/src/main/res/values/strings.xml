@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DragonBallApi</string>
+
+    <string-array name="filter_options">
+        <item>Personajes</item>
+        <item>Planetas</item>
+    </string-array>
+
 </resources>

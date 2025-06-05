@@ -108,7 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_gravity="top"
-            android:background="@drawable/gradient2   "/>
+            android:background="@drawable/gradient2"/>
 
             <TextView
                 android:id="@+id/planet_name"
